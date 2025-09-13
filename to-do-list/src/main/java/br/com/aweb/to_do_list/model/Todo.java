@@ -16,7 +16,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,18 +25,16 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Getter
 @Setter
-@ToString
 @EqualsAndHashCode(of = "id")
-
-
+@ToString
 public class Todo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min =3, max =100)
+    @Size(min = 3, max = 100)
     @NotBlank
     @Column(length = 100, nullable = false)
     private String title;
@@ -45,8 +42,8 @@ public class Todo {
     private LocalDateTime createdAt = LocalDateTime.now();
     @NotNull
     @FutureOrPresent
-    @DateTimeFormat(iso = ISO.DATE)
     @Column(nullable = false)
+    @DateTimeFormat(iso = ISO.DATE)
     private LocalDate deadline;
     @Column(nullable = true)
     private LocalDate finishedAt;
